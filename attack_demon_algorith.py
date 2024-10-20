@@ -3,18 +3,17 @@ import sys
 def main():
     lines = get_stdin()
 
+    demon_hp = int(lines[0])
     attack_point = int(lines[1])
     recovery_point = int(lines[2])
 
     # 回復の方が多い場合倒せないので終了
-    if attack_point <= recovery_point:
+    if demon_hp > attack_point and attack_point <= recovery_point:
         print("NO")
         sys.exit(0)
 
-    turn_count = 0
-    demon_hp = int(lines[0])
-
     # 攻撃した段階でhpが0以下なら終了
+    turn_count = 0
     while demon_hp > 0:
         demon_hp = attack_demon(demon_hp, attack_point)
         turn_count += 1
